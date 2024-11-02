@@ -2,6 +2,7 @@ const n = 100;
 
 class ArraySupplier {
   constructor() {}
+
   createOrderArray() {
     const array = new Array(n).fill(0).map((_, i) => i + 1);
     return array;
