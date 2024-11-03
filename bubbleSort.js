@@ -20,3 +20,9 @@ function draw() {
     rect(i * barWidth + 30, window.innerHeight - 1 - barHeight, barWidth, barHeight);
   }
 }
+
+const swapValues = (arr, a, b) => {
+  let temp = arr[a];
+  arr[a] = arr[b];
+  arr[b] = temp;
+};
