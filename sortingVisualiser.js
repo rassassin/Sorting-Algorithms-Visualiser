@@ -20,13 +20,12 @@ function draw() {
   const heightScale = window.innerHeight / Math.max(...listOfNums);
 
   for (let i = 0; i < listOfNums.length; i++) {
-    const barHeight = listOfNums[i] * heightScale;
     if (i < listOfNums.length) {
       if (listOfNums[i] > listOfNums[i + 1]) {
         swapValues(listOfNums, i, i + 1);
       }
     }
-
+    const barHeight = listOfNums[i] * heightScale;
     rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
   }
 }
