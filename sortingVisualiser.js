@@ -25,10 +25,11 @@ function draw() {
         if (listOfNums[j] > listOfNums[j + 1]) {
           swapValues(listOfNums, j, j + 1);
         }
-        const barHeight = listOfNums[i] * heightScale;
-        rect(i * barWidth + 30, window.innerHeight - 1 - barHeight, barWidth, barHeight);
       }
     }
+
+    const barHeight = listOfNums[i] * heightScale;
+    rect(i * barWidth + 30, window.innerHeight - 1 - barHeight, barWidth, barHeight);
   }
 }
 
