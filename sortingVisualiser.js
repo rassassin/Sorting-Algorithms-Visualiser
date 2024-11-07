@@ -19,17 +19,15 @@ function draw() {
   const barWidth = window.innerWidth / listOfNums.length;
   const heightScale = window.innerHeight / Math.max(...listOfNums);
 
-  for (var i = 0; i < listOfNums.length; i++) {
+  for (let i = 0; i < listOfNums.length; i++) {
+    const barHeight = listOfNums[i] * heightScale;
     if (i < listOfNums.length) {
-      for (let j = 0; j < listOfNums.length - i - 1; j++) {
-        if (listOfNums[j] > listOfNums[j + 1]) {
-          swapValues(listOfNums, j, j + 1);
-        }
+      if (listOfNums[i] > listOfNums[i + 1]) {
+        swapValues(listOfNums, i, i + 1);
       }
     }
 
-    const barHeight = listOfNums[i] * heightScale;
-    rect(i * barWidth + 30, window.innerHeight - 1 - barHeight, barWidth, barHeight);
+    rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
   }
 }
 
