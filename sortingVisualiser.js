@@ -1,7 +1,12 @@
+let sortMethod;
 const maxBar = 100;
 const arraySupplier = new ArraySupplier();
 let listOfNums = [];
 let scale;
+
+function chooseSortMethod(sortMethodChoice) {
+  sortMethod = sortMethodChoice;
+}
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
