@@ -6,6 +6,7 @@ let scale;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
+  frameRate(30);
   sortMethod = window.location.hash[1];
   listOfNums = arraySupplier.getShuffledArray();
 }
