@@ -4,13 +4,9 @@ const arraySupplier = new ArraySupplier();
 let listOfNums = [];
 let scale;
 
-function chooseSortMethod(sortMethodChoice) {
-  sortMethod = sortMethodChoice;
-}
-
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
-
+  sortMethod = window.location.hash[1];
   listOfNums = arraySupplier.getShuffledArray();
 }
 
