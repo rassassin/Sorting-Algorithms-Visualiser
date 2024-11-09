@@ -1,4 +1,4 @@
-const n = 100;
+const n = 1000;
 
 class ArraySupplier {
   constructor() {}

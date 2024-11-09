@@ -18,13 +18,25 @@ function draw() {
 
   for (let i = 0; i < listOfNums.length; i++) {
     if (sortMethod) {
-      bubbleSort(listOfNums, i);
+      selectionSort(listOfNums, i);
     }
 
     const barHeight = listOfNums[i] * heightScale;
     rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
   }
 }
+
+const selectionSort = (arr, index) => {
+  let largestVal = index;
+  for (let j = index + 1; j < arr.length; j++) {
+    if (arr[largestVal] < arr[j]) {
+      largestVal = j;
+    }
+    let temp = arr[largestVal];
+    arr[largestVal] = arr[j];
+    arr[j] = temp;
+  }
+};
 
 const bubbleSort = (arr, i) => {
   if (i < listOfNums.length) {
