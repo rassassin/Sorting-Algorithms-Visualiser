@@ -16,11 +16,8 @@ function draw() {
   const barWidth = window.innerWidth / listOfNums.length;
   const heightScale = window.innerHeight / Math.max(...listOfNums);
 
-  if (sortMethod === "1") {
-    bubbleSort(listOfNums);
-  } else if (sortMethod === "2") {
-    selectionSort(listOfNums);
-  }
+  if (sortMethod === "1") bubbleSort(listOfNums);
+  if (sortMethod === "2") selectionSort(listOfNums);
 
   for (let i = 0; i < listOfNums.length; i++) {
     const barHeight = listOfNums[i] * heightScale;
@@ -30,11 +27,11 @@ function draw() {
 
 const selectionSort = (arr) => {
   let largestIndex = 0;
-  for (let j = 0; j < arr.length; j++) {
-    if (arr[largestIndex] < arr[j]) {
-      largestIndex = j;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[largestIndex] < arr[i]) {
+      largestIndex = i;
     }
-    [arr[largestIndex], arr[j]] = [arr[j], arr[largestIndex]];
+    [arr[largestIndex], arr[i]] = [arr[i], arr[largestIndex]];
   }
 };
 
