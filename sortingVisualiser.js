@@ -16,9 +16,7 @@ function draw() {
   const barWidth = window.innerWidth / listOfNums.length;
   const heightScale = window.innerHeight / Math.max(...listOfNums);
 
-  if (sortMethod === "1") {
-    bucketSort(listOfNums);
-  }
+  if (sortMethod === "1") bucketSort(listOfNums);
   if (sortMethod === "2") selectionSort(listOfNums);
 
   for (let i = 0; i < listOfNums.length; i++) {
