@@ -36,13 +36,13 @@ const bucketSort = (arr) => {
     buckets[idxOfBucket].push(arr[i]);
   }
   // arr = buckets.flat();
-  arr = [];
+  arr.length = 0;
+  console.log(typeof arr);
   for (let i = 0; i < buckets.length; i++) {
     for (let j = 0; j < buckets[i].length; j++) {
       arr.push(buckets[i][j]);
     }
   }
-  bubbleSort(arr);
 };
 
 const selectionSort = (arr) => {
