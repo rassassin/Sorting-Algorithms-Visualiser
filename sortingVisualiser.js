@@ -26,18 +26,18 @@ function draw() {
 }
 
 const bucketSort = (arr) => {
-  const numberOfBucketsNeeded = arr.length / 10 + 1;
+  const numberOfItemsToSort = arr;
+  const numberOfBucketsNeeded = numberOfItemsToSort / 10 + 1;
   let buckets = [];
-  for (let i = 0; i < numberOfBucketsNeeded; i++) {
+  for (let i = 0; i < numberOfItemsToSort.length; i++) {
     buckets.push([]);
   }
-  for (let i = 0; i < arr.length; i++) {
-    const idxOfBucket = Math.trunc(arr[i] / 10);
-    buckets[idxOfBucket].push(arr[i]);
-  }
-  // arr = buckets.flat();
   arr.length = 0;
-  console.log(typeof arr);
+  for (let i = 0; i < numberOfItemsToSort.length; i++) {
+    const idxOfBucket = Math.trunc(numberOfItemsToSort[i] / 10);
+    buckets[idxOfBucket].push(numberOfItemsToSort[i]);
+  }
+
   for (let i = 0; i < buckets.length; i++) {
     for (let j = 0; j < buckets[i].length; j++) {
       arr.push(buckets[i][j]);
