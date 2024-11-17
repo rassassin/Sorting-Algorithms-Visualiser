@@ -16,8 +16,9 @@ function draw() {
   const barWidth = window.innerWidth / listOfNums.length;
   const heightScale = window.innerHeight / Math.max(...listOfNums);
 
-  if (sortMethod === "1") insertionSort(listOfNums);
+  if (sortMethod === "1") bubbleSort(listOfNums);
   if (sortMethod === "2") selectionSort(listOfNums);
+  if (sortMethod === "3") insertionSort(listOfNums);
 
   for (let i = 0; i < listOfNums.length; i++) {
     const barHeight = listOfNums[i] * heightScale;
