@@ -13,13 +13,14 @@ function setup() {
 
 function draw() {
   background(200);
-  const barWidth = window.innerWidth / listOfNums.length;
-  const heightScale = window.innerHeight / Math.max(...listOfNums);
 
   if (sortMethod === "1") bubbleSort(listOfNums);
   if (sortMethod === "2") selectionSort(listOfNums);
   if (sortMethod === "3") insertionSort(listOfNums);
   if (sortMethod === "4") bucketSort(listOfNums);
+
+  const barWidth = window.innerWidth / listOfNums.length;
+  const heightScale = window.innerHeight / Math.max(...listOfNums);
 
   for (let i = 0; i < listOfNums.length; i++) {
     const barHeight = listOfNums[i] * heightScale;
@@ -37,7 +38,7 @@ const bucketSort = (arr) => {
 
   for (let i = 0; i < numberOfItemsToSort.length; i++) {
     const idxOfBucket = Math.trunc(numberOfItemsToSort[i] / 10);
-    arr[idxOfBucket].push(numberOfItemsToSort[i]);
+    buckets[idxOfBucket].push(numberOfItemsToSort[i]);
   }
 
   arr.length = 0;
