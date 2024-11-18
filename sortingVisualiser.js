@@ -3,6 +3,7 @@ const maxBar = 100;
 const arraySupplier = new ArraySupplier();
 let listOfNums = [];
 let scale;
+let index = 1;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
@@ -50,14 +51,15 @@ const bucketSort = (arr) => {
 };
 
 const insertionSort = (arr) => {
-  for (let i = 1; i < arr.length; i++) {
-    let key = arr[i];
-    let j = i - 1;
+  if (index < arr.length) {
+    let key = arr[index];
+    let j = index - 1;
     while (j >= 0 && arr[j] > key) {
       arr[j + 1] = arr[j];
-      j -= 1;
+      j = j - 1;
     }
     arr[j + 1] = key;
+    index++;
   }
 };
 
