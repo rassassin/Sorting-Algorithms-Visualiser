@@ -2,6 +2,7 @@ let sortMethod;
 const maxBar = 100;
 const arraySupplier = new ArraySupplier();
 let listOfNums = [];
+let arrayCopy = [];
 let scale;
 let index = 1;
 
@@ -10,6 +11,7 @@ function setup() {
   frameRate(30);
   sortMethod = window.location.hash[1];
   listOfNums = arraySupplier.getShuffledArray();
+  arrayCopy = [...listOfNums];
 }
 
 function draw() {
@@ -18,7 +20,10 @@ function draw() {
   if (sortMethod === "1") bubbleSort(listOfNums);
   if (sortMethod === "2") selectionSort(listOfNums);
   if (sortMethod === "3") insertionSort(listOfNums);
-  if (sortMethod === "4") bucketSort(listOfNums);
+  if (sortMethod === "4") {
+    bucketSort(listOfNums);
+    selectionSort(listOfNums);
+  }
 
   const barWidth = window.innerWidth / listOfNums.length;
   const heightScale = window.innerHeight / Math.max(...listOfNums);
@@ -30,24 +35,30 @@ function draw() {
 }
 
 const bucketSort = (arr) => {
-  let numberOfItemsToSort = [...arr];
-  const numberOfBucketsNeeded = numberOfItemsToSort.length / 10 + 1;
+  const numberOfBucketsNeeded = arrayCopy.length / 10 + 1;
   let buckets = [];
-  for (let i = 0; i < numberOfBucketsNeeded; i++) {
-    buckets.push([]);
-  }
-
-  for (let i = 0; i < numberOfItemsToSort.length; i++) {
-    const idxOfBucket = Math.trunc(numberOfItemsToSort[i] / 10);
-    buckets[idxOfBucket].push(numberOfItemsToSort[i]);
-  }
-
   arr.length = 0;
+  for (let i = 0; i < numberOfBucketsNeeded; i++) {
+    arr.push([]);
+  }
+
+  for (let i = 0; i < arrayCopy.length; i++) {
+    const idxOfBucket = Math.trunc(arrayCopy[i] / 10);
+    arr[idxOfBucket].push(arrayCopy[i]);
+  }
+
   for (let i = 0; i < buckets.length; i++) {
     for (let j = 0; j < buckets[i].length; j++) {
-      arr.push(buckets[i][j]);
+      arr.push(arr[i][j]);
     }
   }
+
+  // arr.length = 0;
+  // for (let i = 0; i < buckets.length; i++) {
+  //   for (let j = 0; j < buckets[i].length; j++) {
+  //     arr.push(buckets[i][j]);
+  //   }
+  // }
 };
 
 const bucketSortTwo = (arr) => {};
