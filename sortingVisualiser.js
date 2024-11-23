@@ -50,6 +50,8 @@ const bucketSort = (arr) => {
   }
 };
 
+const bucketSortTwo = (arr) => {};
+
 const insertionSort = (arr) => {
   if (index < arr.length) {
     let key = arr[index];
