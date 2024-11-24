@@ -22,6 +22,7 @@ function draw() {
   if (sortMethod === "3") insertionSort(listOfNums);
   if (sortMethod === "4") {
     bucketSort(listOfNums);
+    listOfNums = listOfNums.flat();
     selectionSort(listOfNums);
   }
 
@@ -36,7 +37,6 @@ function draw() {
 
 const bucketSort = (arr) => {
   const numberOfBucketsNeeded = arrayCopy.length / 10 + 1;
-  let buckets = [];
   arr.length = 0;
   for (let i = 0; i < numberOfBucketsNeeded; i++) {
     arr.push([]);
@@ -46,19 +46,6 @@ const bucketSort = (arr) => {
     const idxOfBucket = Math.trunc(arrayCopy[i] / 10);
     arr[idxOfBucket].push(arrayCopy[i]);
   }
-
-  for (let i = 0; i < buckets.length; i++) {
-    for (let j = 0; j < buckets[i].length; j++) {
-      arr.push(arr[i][j]);
-    }
-  }
-
-  // arr.length = 0;
-  // for (let i = 0; i < buckets.length; i++) {
-  //   for (let j = 0; j < buckets[i].length; j++) {
-  //     arr.push(buckets[i][j]);
-  //   }
-  // }
 };
 
 const bucketSortTwo = (arr) => {};
