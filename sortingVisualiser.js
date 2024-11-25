@@ -16,18 +16,20 @@ function setup() {
 
 function draw() {
   background(200);
+  const barWidth = window.innerWidth / listOfNums.length;
+  const heightScale = window.innerHeight / Math.max(...listOfNums);
 
   if (sortMethod === "1") bubbleSort(listOfNums);
   if (sortMethod === "2") selectionSort(listOfNums);
   if (sortMethod === "3") insertionSort(listOfNums);
   if (sortMethod === "4") {
+    for (let i = 0; i < listOfNums.length; i++) {
+      const barHeight = listOfNums[i] * heightScale;
+      rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
+    }
     bucketSort(listOfNums);
-    listOfNums = listOfNums.flat();
     selectionSort(listOfNums);
   }
-
-  const barWidth = window.innerWidth / listOfNums.length;
-  const heightScale = window.innerHeight / Math.max(...listOfNums);
 
   for (let i = 0; i < listOfNums.length; i++) {
     const barHeight = listOfNums[i] * heightScale;
@@ -46,9 +48,21 @@ const bucketSort = (arr) => {
     const idxOfBucket = Math.trunc(arrayCopy[i] / 10);
     arr[idxOfBucket].push(arrayCopy[i]);
   }
+
+  flattenArrayInPlace(arr);
 };
 
-const bucketSortTwo = (arr) => {};
+function flattenArrayInPlace(arr) {
+  let i = 0;
+  while (i < arr.length) {
+    if (Array.isArray(arr[i])) {
+      // Splice the nested array into the original array
+      arr.splice(i, 1, ...arr[i]);
+    } else {
+      i++;
+    }
+  }
+}
 
 const insertionSort = (arr) => {
   if (index < arr.length) {
