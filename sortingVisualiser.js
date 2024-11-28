@@ -24,20 +24,28 @@ function draw() {
   if (sortMethod === "3") insertionSort(listOfNums);
   if (sortMethod === "4") {
     for (let i = 0; i < listOfNums.length; i++) {
-      const barHeight = listOfNums[i] * heightScale;
+      let barHeight = listOfNums[i] * heightScale;
       rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
     }
-    bucketSort(listOfNums);
-    selectionSort(listOfNums);
-  }
 
-  for (let i = 0; i < listOfNums.length; i++) {
-    const barHeight = listOfNums[i] * heightScale;
-    rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
+    const bucketSortArray = bucketSort();
+    if (index < listOfNums.length) {
+      listOfNums.pop();
+      listOfNums.push(bucketSortArray[index]);
+      let barHeight = listOfNums[index] * heightScale;
+      rect(index * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
+      index++;
+    }
+  } else {
+    for (let i = 0; i < listOfNums.length; i++) {
+      let barHeight = listOfNums[i] * heightScale;
+      rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
+    }
   }
 }
 
-const bucketSort = (arr) => {
+const bucketSort = () => {
+  let arr = [...arrayCopy];
   const numberOfBucketsNeeded = arrayCopy.length / 10 + 1;
   arr.length = 0;
   for (let i = 0; i < numberOfBucketsNeeded; i++) {
@@ -50,6 +58,7 @@ const bucketSort = (arr) => {
   }
 
   flattenArrayInPlace(arr);
+  return arr;
 };
 
 function flattenArrayInPlace(arr) {
