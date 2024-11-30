@@ -28,11 +28,10 @@ function draw() {
     for (let i = 0; i < listOfNums.length; i++) {
       const barHeight = listOfNums[i] * heightScale;
       rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
-      // if (scanIndex < listOfNums.length) {
-      //   fill(color(0, 255, 0));
-
-      //   scanIndex++;
-      // }
+    }
+    if (scanIndex < listOfNums.length) {
+      fill(color(0, 255, 0));
+      scanIndex++;
     }
 
     let bucketSortArray = bucketSort();
@@ -60,7 +59,7 @@ const scanArray = (arr) => {
     const barHeight = listOfNums[i] * heightScale;
 
     rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
-    // fill(color(255, 255, 255));
+    fill(color(0, 255, 0));
   }
 };
 
