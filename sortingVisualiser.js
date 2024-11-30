@@ -5,6 +5,7 @@ let listOfNums = [];
 let arrayCopy = [];
 let scale;
 let index = 1;
+let bubbleSortIndex = 0;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
@@ -24,18 +25,18 @@ function draw() {
   if (sortMethod === "3") insertionSort(listOfNums);
   if (sortMethod === "4") {
     for (let i = 0; i < listOfNums.length; i++) {
-      let barHeight = listOfNums[i] * heightScale;
+      const barHeight = listOfNums[i] * heightScale;
       rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
     }
 
-    const bucketSortArray = bucketSort();
-    if (index < listOfNums.length) {
+    let bucketSortArray = bucketSort();
+    bucketSortArray.reverse();
+    if (bubbleSortIndex < listOfNums.length) {
       listOfNums.pop();
-      listOfNums.push(bucketSortArray[index]);
-      let barHeight = listOfNums[index] * heightScale;
-      rect(index * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
-      index++;
+      listOfNums.unshift(bucketSortArray[bubbleSortIndex]);
+      bubbleSortIndex++;
     }
+    // selectionSort(listOfNums);
   } else {
     for (let i = 0; i < listOfNums.length; i++) {
       let barHeight = listOfNums[i] * heightScale;
