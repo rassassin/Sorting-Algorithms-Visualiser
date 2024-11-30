@@ -6,6 +6,7 @@ let arrayCopy = [];
 let scale;
 let index = 1;
 let bubbleSortIndex = 0;
+let scanIndex = 0;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
@@ -27,6 +28,11 @@ function draw() {
     for (let i = 0; i < listOfNums.length; i++) {
       const barHeight = listOfNums[i] * heightScale;
       rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
+      // if (scanIndex < listOfNums.length) {
+      //   fill(color(0, 255, 0));
+
+      //   scanIndex++;
+      // }
     }
 
     let bucketSortArray = bucketSort();
@@ -36,7 +42,9 @@ function draw() {
       listOfNums.unshift(bucketSortArray[bubbleSortIndex]);
       bubbleSortIndex++;
     }
-    // selectionSort(listOfNums);
+    if (bubbleSortIndex === listOfNums.length) {
+      selectionSort(listOfNums);
+    }
   } else {
     for (let i = 0; i < listOfNums.length; i++) {
       let barHeight = listOfNums[i] * heightScale;
@@ -50,7 +58,7 @@ const scanArray = (arr) => {
   const heightScale = window.innerHeight / Math.max(...arr);
   for (let i = 0; i < arr.length; i++) {
     const barHeight = listOfNums[i] * heightScale;
-    fill(color(0, 255, 0));
+
     rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
     // fill(color(255, 255, 255));
   }
