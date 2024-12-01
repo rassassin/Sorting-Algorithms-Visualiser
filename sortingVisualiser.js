@@ -30,7 +30,7 @@ function draw() {
     arrayMerger();
   } else {
     for (let i = 0; i < listOfNums.length; i++) {
-      let barHeight = listOfNums[i] * heightScale;
+      const barHeight = listOfNums[i] * heightScale;
       rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
     }
   }
