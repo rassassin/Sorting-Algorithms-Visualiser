@@ -7,6 +7,8 @@ let scale;
 let index = 1;
 let bubbleSortIndex = 0;
 let scanIndex = 0;
+let barWidth;
+let heightScale;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
@@ -14,41 +16,18 @@ function setup() {
   sortMethod = window.location.hash[1];
   listOfNums = arraySupplier.getShuffledArray();
   arrayCopy = [...listOfNums];
+  barWidth = window.innerWidth / listOfNums.length;
+  heightScale = window.innerHeight / Math.max(...listOfNums);
 }
 
 function draw() {
   background(200);
-  const barWidth = window.innerWidth / listOfNums.length;
-  const heightScale = window.innerHeight / Math.max(...listOfNums);
 
   if (sortMethod === "1") bubbleSort(listOfNums);
   if (sortMethod === "2") selectionSort(listOfNums);
   if (sortMethod === "3") insertionSort(listOfNums);
   if (sortMethod === "4") {
-    for (let i = 0; i < listOfNums.length; i++) {
-      fill(color(255, 255, 255));
-      const barHeight = listOfNums[i] * heightScale;
-      rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
-    }
-    if (scanIndex < listOfNums.length) {
-      fill(color(0, 255, 0));
-      const barHeight = listOfNums[scanIndex] * heightScale;
-      rect(scanIndex * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
-      scanIndex++;
-    }
-    if (scanIndex === listOfNums.length) {
-      fill(color(255, 255, 255));
-      let bucketSortArray = bucketSort();
-      bucketSortArray.reverse();
-      if (bubbleSortIndex < listOfNums.length) {
-        listOfNums.pop();
-        listOfNums.unshift(bucketSortArray[bubbleSortIndex]);
-        bubbleSortIndex++;
-      }
-      if (bubbleSortIndex === listOfNums.length) {
-        bubbleSort(listOfNums);
-      }
-    }
+    arrayMerger();
   } else {
     for (let i = 0; i < listOfNums.length; i++) {
       let barHeight = listOfNums[i] * heightScale;
@@ -56,6 +35,33 @@ function draw() {
     }
   }
 }
+
+const arrayMerger = () => {
+  for (let i = 0; i < listOfNums.length; i++) {
+    fill(color(255, 255, 255));
+    const barHeight = listOfNums[i] * heightScale;
+    rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
+  }
+  if (scanIndex < listOfNums.length) {
+    fill(color(0, 255, 0));
+    const barHeight = listOfNums[scanIndex] * heightScale;
+    rect(scanIndex * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
+    scanIndex++;
+  }
+  if (scanIndex === listOfNums.length) {
+    fill(color(255, 255, 255));
+    let bucketSortArray = bucketSort();
+    bucketSortArray.reverse();
+    if (bubbleSortIndex < listOfNums.length) {
+      listOfNums.pop();
+      listOfNums.unshift(bucketSortArray[bubbleSortIndex]);
+      bubbleSortIndex++;
+    }
+    if (bubbleSortIndex === listOfNums.length) {
+      bubbleSort(listOfNums);
+    }
+  }
+};
 
 const bucketSort = () => {
   let arr = [...arrayCopy];
