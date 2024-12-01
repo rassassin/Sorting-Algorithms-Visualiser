@@ -26,23 +26,28 @@ function draw() {
   if (sortMethod === "3") insertionSort(listOfNums);
   if (sortMethod === "4") {
     for (let i = 0; i < listOfNums.length; i++) {
+      fill(color(255, 255, 255));
       const barHeight = listOfNums[i] * heightScale;
       rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
     }
     if (scanIndex < listOfNums.length) {
       fill(color(0, 255, 0));
+      const barHeight = listOfNums[scanIndex] * heightScale;
+      rect(scanIndex * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
       scanIndex++;
     }
-
-    let bucketSortArray = bucketSort();
-    bucketSortArray.reverse();
-    if (bubbleSortIndex < listOfNums.length) {
-      listOfNums.pop();
-      listOfNums.unshift(bucketSortArray[bubbleSortIndex]);
-      bubbleSortIndex++;
-    }
-    if (bubbleSortIndex === listOfNums.length) {
-      selectionSort(listOfNums);
+    if (scanIndex === listOfNums.length) {
+      fill(color(255, 255, 255));
+      let bucketSortArray = bucketSort();
+      bucketSortArray.reverse();
+      if (bubbleSortIndex < listOfNums.length) {
+        listOfNums.pop();
+        listOfNums.unshift(bucketSortArray[bubbleSortIndex]);
+        bubbleSortIndex++;
+      }
+      if (bubbleSortIndex === listOfNums.length) {
+        bubbleSort(listOfNums);
+      }
     }
   } else {
     for (let i = 0; i < listOfNums.length; i++) {
