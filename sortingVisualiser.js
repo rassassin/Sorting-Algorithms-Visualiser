@@ -57,17 +57,6 @@ function draw() {
   }
 }
 
-const scanArray = (arr) => {
-  const barWidth = window.innerWidth / arr.length;
-  const heightScale = window.innerHeight / Math.max(...arr);
-  for (let i = 0; i < arr.length; i++) {
-    const barHeight = listOfNums[i] * heightScale;
-
-    rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
-    fill(color(0, 255, 0));
-  }
-};
-
 const bucketSort = () => {
   let arr = [...arrayCopy];
   const numberOfBucketsNeeded = arrayCopy.length / 10 + 1;
