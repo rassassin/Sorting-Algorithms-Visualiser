@@ -124,3 +124,5 @@ const bubbleSort = (arr) => {
     }
   }
 };
+
+const quickSort = () => {};
