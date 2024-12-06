@@ -7,7 +7,7 @@ canvas {
 }
 
 canvas {
-  display:block;
+  display: block;
 }
 
 .main {
@@ -33,6 +33,9 @@ canvas {
 }
 
 a {
+  width: 100px;
+  display: flex;
+  justify-content: center;
   border: none;
   outline: none;
   color: #fff;
@@ -40,7 +43,7 @@ a {
   font-size: 16px;
   padding: 13px 22px;
   border-radius: 30px;
-  background: #BF40BF;
+  background: #bf40bf;
   text-decoration: none;
 }
 
