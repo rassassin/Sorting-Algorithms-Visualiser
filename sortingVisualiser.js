@@ -9,6 +9,7 @@ let bubbleSortIndex = 0;
 let scanIndex = 0;
 let barWidth;
 let heightScale;
+let sorting = false;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
@@ -18,6 +19,7 @@ function setup() {
   arrayCopy = [...listOfNums];
   barWidth = window.innerWidth / listOfNums.length;
   heightScale = window.innerHeight / Math.max(...listOfNums);
+  sorting = true;
 }
 
 function draw() {
@@ -26,7 +28,7 @@ function draw() {
   if (sortMethod === "1") bubbleSort(listOfNums);
   if (sortMethod === "2") selectionSort(listOfNums);
   if (sortMethod === "3") insertionSort(listOfNums);
-
+  if (sortMethod === "5") startSorting();
   if (sortMethod === "4") {
     arrayMerger();
   } else {
@@ -126,7 +128,18 @@ const bubbleSort = (arr) => {
   }
 };
 
-async function quickSort(arr, start, end) {}
+async function startSorting() {
+  sorting = true;
+  await quickSort(listOfNums, 0, listOfNums.length - 1);
+  sorting = false;
+}
+
+async function quickSort(arr, start, end) {
+  if (start >= end) return;
+
+  let index = await partition(arr, start, end);
+  await Promise.all([quickSort(arr, start, index - 1), quickSort(arr, index + 1, end)]);
+}
 
 async function partition(arr, start, end) {
   let pivotValue = arr[end];
@@ -140,4 +153,18 @@ async function partition(arr, start, end) {
     await swap(arr, pivotIndex, end);
     return pivotIndex;
   }
+}
+
+async function swap(arr, a, b) {
+  await sleep();
+  while (!sorting) {
+    await sleep(300);
+  }
+  let temp = arr[a];
+  arr[a] = arr[b];
+  arr[b] = temp;
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
