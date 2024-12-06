@@ -26,6 +26,7 @@ function draw() {
   if (sortMethod === "1") bubbleSort(listOfNums);
   if (sortMethod === "2") selectionSort(listOfNums);
   if (sortMethod === "3") insertionSort(listOfNums);
+
   if (sortMethod === "4") {
     arrayMerger();
   } else {
@@ -125,4 +126,18 @@ const bubbleSort = (arr) => {
   }
 };
 
-const quickSort = () => {};
+async function quickSort(arr, start, end) {}
+
+async function partition(arr, start, end) {
+  let pivotValue = arr[end];
+  let pivotIndex = start;
+  for (let i = start; i < end; i++) {
+    if (arr[i] < pivotValue) {
+      await swap(arr, i, pivotIndex);
+      pivotIndex++;
+    }
+
+    await swap(arr, pivotIndex, end);
+    return pivotIndex;
+  }
+}
