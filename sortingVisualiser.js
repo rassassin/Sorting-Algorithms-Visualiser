@@ -87,7 +87,6 @@ function flattenArrayInPlace(arr) {
   let i = 0;
   while (i < arr.length) {
     if (Array.isArray(arr[i])) {
-      // Splice the nested array into the original array
       arr.splice(i, 1, ...arr[i]);
     } else {
       i++;
@@ -149,10 +148,9 @@ async function partition(arr, start, end) {
       await swap(arr, i, pivotIndex);
       pivotIndex++;
     }
-
-    await swap(arr, pivotIndex, end);
-    return pivotIndex;
   }
+  await swap(arr, pivotIndex, end);
+  return pivotIndex;
 }
 
 async function swap(arr, a, b) {
