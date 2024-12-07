@@ -137,7 +137,8 @@ async function quickSort(arr, start, end) {
   if (start >= end) return;
 
   let index = await partition(arr, start, end);
-  await Promise.all([quickSort(arr, start, index - 1), quickSort(arr, index + 1, end)]);
+  await quickSort(arr, start, index - 1);
+  await quickSort(arr, index + 1, end);
 }
 
 async function partition(arr, start, end) {
