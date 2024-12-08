@@ -33,6 +33,7 @@ function draw() {
   } else {
     for (let i = 0; i < listOfNums.length; i++) {
       const barHeight = listOfNums[i] * heightScale;
+      fill(255, 0, i / 2);
       rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
     }
   }
