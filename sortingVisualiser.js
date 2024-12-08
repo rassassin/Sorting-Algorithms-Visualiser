@@ -19,7 +19,7 @@ function setup() {
   arrayCopy = [...listOfNums];
   barWidth = window.innerWidth / listOfNums.length;
   heightScale = window.innerHeight / Math.max(...listOfNums);
-  sorting = true;
+  if (sortMethod === "5") startSorting();
 }
 
 function draw() {
@@ -28,7 +28,6 @@ function draw() {
   if (sortMethod === "1") bubbleSort(listOfNums);
   if (sortMethod === "2") selectionSort(listOfNums);
   if (sortMethod === "3") insertionSort(listOfNums);
-  if (sortMethod === "5") startSorting();
   if (sortMethod === "4") {
     arrayMerger();
   } else {
