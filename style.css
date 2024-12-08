@@ -4,6 +4,7 @@ canvas {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  font-family: Roboto, Helvetica Neue, sans-serif;
 }
 
 canvas {
@@ -15,16 +16,23 @@ canvas {
   width: 100vw;
 }
 
-.container {
+.sortingAlgorithmsListContainer {
+  height: 100vh;
+  width: 100vw;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .mainHeader {
   display: flex;
   justify-content: center;
+}
+
+.algorithmsListContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .algorithmsList {
@@ -40,7 +48,7 @@ canvas {
 }
 
 a {
-  width: 100px;
+  width: 125px;
   display: flex;
   justify-content: center;
   border: none;
