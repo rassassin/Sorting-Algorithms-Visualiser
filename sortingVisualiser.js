@@ -33,7 +33,7 @@ function draw() {
   } else {
     for (let i = 0; i < listOfNums.length; i++) {
       const barHeight = listOfNums[i] * heightScale;
-      fill(255, 0, i / 2);
+      fill(color(255, 0, barHeight / 2));
       rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
     }
   }
@@ -41,21 +41,22 @@ function draw() {
 
 const arrayMerger = () => {
   for (let i = 0; i < listOfNums.length; i++) {
-    fill(color(255, 255, 255));
     const barHeight = listOfNums[i] * heightScale;
+    fill(color(255, 0, barHeight / 2));
     rect(i * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
   }
   if (scanIndex < listOfNums.length) {
-    fill(color(0, 255, 0));
     const barHeight = listOfNums[scanIndex] * heightScale;
+    fill(color(0, 255, 0));
     rect(scanIndex * barWidth, window.innerHeight - 1 - barHeight, barWidth, barHeight);
     scanIndex++;
   }
   if (scanIndex === listOfNums.length) {
-    fill(color(255, 255, 255));
     let bucketSortArray = bucketSort();
     bucketSortArray.reverse();
     if (bubbleSortIndex < listOfNums.length) {
+      const barHeight = listOfNums[bubbleSortIndex] * heightScale;
+      fill(color(255, 0, barHeight / 2));
       listOfNums.pop();
       listOfNums.unshift(bucketSortArray[bubbleSortIndex]);
       bubbleSortIndex++;
